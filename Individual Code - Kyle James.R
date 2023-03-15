@@ -1,4 +1,6 @@
 library(tidyverse)
+library(ggplot2)
+library(socviz) # TODO: remove
 
 # Section 1: Reading Data
 matches = read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-11-29/wcmatches.csv")
@@ -58,6 +60,33 @@ east_germany_win_percent= num_east_germany_wins / num_east_germany_games
 # Split Germany: 68GP - 41W - 14L - 13D - 60.3W%
 # West Germany: 68GP - 39W - 13L - 11D - 62.9W%
 # East Germany: 6GP - 2W - 2L - 2D - 33.3W%
+
+# Section 5: Data Visualization
+germany_game_data = data.frame(
+  team = c("Unified Germany", "West Germany", "East Germany"),
+  wins = c(num_unified_germany_wins, num_west_germany_wins, num_east_germany_wins),
+  draws = c(num_unified_germany_draws, num_west_germany_draws, num_east_germany_draws),
+  losses = c(num_unified_germany_losses, num_west_germany_losses, num_east_germany_losses),
+  games_played = c(num_unified_germany_games, num_west_germany_games, num_east_germany_games))
+
+germany_game_data_long= germany_game_data %>% 
+  pivot_longer(cols = c("wins", "losses", "draws"), names_to = "game_result", values_to = "occurences")
+
+ggplot(germany_game_data_long, aes(x = team, y = occurences, fill = game_result)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Team", y = "Number of Games", fill = "") +
+  ggtitle("Wins, Losses, and Draws by Team") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+
+
+
+
+
+
+
 
 
 
