@@ -114,7 +114,7 @@ ggplot(germany_game_data_long, aes(x = team, y = occurences, fill = game_result)
   ggtitle("Game Result by Germany Team") + 
   scale_fill_manual(values = c("#FF6B6B", "#FFE66D", "#6BD4FF"), 
                     name = "Game Result",
-                    labels = c("Draw", "Goals Loss", "Win"))
+                    labels = c("Draw", "Loss", "Win"))
 
 # grouped bar chart for each German team's goals for and goals against
 germany_goals_data = data.frame(team = c("United Germany", "West Germany", "East Germany"),
