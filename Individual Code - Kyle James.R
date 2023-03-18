@@ -40,7 +40,7 @@ west_germany_draws = west_germany_games %>% filter(winning_team %in% c(NA))
 east_germany_draws = east_germany_games %>%  filter(winning_team %in% c(NA))
 
 # filtering goals scored
-# to calculate the goals scored for each German team, we will sum the goals of home_score and away_score for germanTeam_home_games and germanTeam_away_teams
+# to calculate the goals scored for each German team, we will sum the goals of home_score and away_score for germanTeam_home_games and germanTeam_away_games
 unified_germany_goals_for = sum(sum(unified_germany_home_games$home_score) + sum(unified_germany_away_games$away_score))
 split_germany_goals_for = sum((sum(west_germany_home_games$home_score) + sum(west_germany_away_games$away_score)) + (sum(east_germany_home_games$home_score) + sum(east_germany_away_games$away_score)))
 west_germany_goals_for = sum(sum(west_germany_home_games$home_score) + sum(west_germany_away_games$away_score))
