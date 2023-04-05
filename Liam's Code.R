@@ -257,4 +257,18 @@ actual_vals_fifa2 = test_fifa2$win_perc
 fit2 = lm(win_perc ~ ., data = train_fifa2)
 pred_vals_fifa2 = predict(fit2, newdata = test_fifa2)
 sqrt(mean((actual_vals_fifa - pred_vals_fifa2)^2))
+lm(goals_per_game~1, data = train_fifa2)
+mean(train_fifa2$goals_per_game)
+fit2
+
+lm(goals_per_game ~ ., data = train_fifa2)
+summary(fit2)
+
+# Scoring Model
+
+Score_fifa = Countries_WC %>% 
+  dplyr::select(c(country, win_perc, goals_per_game, goals_against_per_game)) %>% 
+  mutate(goals_against_per_game = -goals_against_per_game) %>% 
+  mutate(score = (goals_per_game + goals_against_per_game)/2) %>% 
+  arrange(desc(score))
 
